@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes , Route } from "react-router-dom";
-import Map from "./Map";
+
 import PersonList from "./PersonList";
 import PersonDetails from "./PersonDetails";
 import { Person } from "./types";
@@ -30,16 +30,21 @@ const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <h1>List of People</h1>
+        
         <Routes>
-          <Route  path="/">
-            <PersonList people={people} />
-          </Route>
-          <Route path="/person/:id">
+        
+
+          <Route path={'/'} element={
+           
+              <PersonList people={people} onPersonClick={handlePersonClick} />
+           
+          } />
+
+        <Route path={'/person/:id'} element={
             <PersonDetails people={people} />
-          </Route>
-          </Routes>
-        <Map people={people} />
+          } />
+        </Routes>
+        
       </div>
     </Router>
   );

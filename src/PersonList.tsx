@@ -1,5 +1,6 @@
 import React from "react";
 import { Person } from "./types";
+import { Link } from "react-router-dom";
 
 interface PersonListProps {
   people: Person[];
@@ -7,15 +8,22 @@ interface PersonListProps {
 }
 
 const PersonList: React.FC<PersonListProps> = ({ people, onPersonClick }) => {
+  
   return (
+    <>
+    <h1>List of People</h1>
     <ul>
-      {people.map((person) => (
-        <li key={person._id} onClick={() => onPersonClick(person)}>
-        <img src={person.picture} alt={person.name.first} style={{ width: "50px", height: "50px" }} />
-          {person.name.first} {person.name.last}
+      {people.map((p) => (
+      <li key={p._id}>
+        <Link to={`/person/${p._id}`}>
+          <img src={p.picture} alt={p.name.first} style={{ width: "50px", height: "50px" }} />
+          {p.name.first} {p.name.last}
+        </Link>
         </li>
       ))}
     </ul>
+    </>
+  
   );
 };
 
